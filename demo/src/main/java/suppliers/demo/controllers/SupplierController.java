@@ -32,4 +32,20 @@ public class SupplierController {
         SupplierDTO newSupplier = supplierService.createSupplier(supplier);
         return ResponseEntity.ok(newSupplier);
     }
+
+    @Transactional
+    @PutMapping("/{supplierId}")
+    public ResponseEntity<SupplierDTO> updateSupplier(@RequestBody SupplierCreationDTO supplierNewData, @PathVariable Long supplierId){
+        SupplierDTO updatedSupplier = supplierService.updateSupplier(supplierNewData, supplierId);
+        return ResponseEntity.ok(updatedSupplier);
+    }
+
+    @Transactional
+    @DeleteMapping("/{supplierId}")
+    public ResponseEntity<String> deleteSupplier(@PathVariable Long supplierId){
+        supplierService.deleteSupplier(supplierId);
+        return ResponseEntity.ok("fornecedor deletado com sucesso");
+    }
+
+
 }

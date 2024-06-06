@@ -27,4 +27,10 @@ public class Supplier {
         this.cnpj = supplier.cnpj();
         this.endereco = supplier.endereco();
     }
+
+    public void update(SupplierCreationDTO supplierData){
+        if(supplierData.cnpj() != null) this.cnpj = supplierData.cnpj();
+        if(supplierData.nome() != null) this.nome = supplierData.nome();
+        if(supplierData.endereco() != null) this.endereco = supplierData.endereco();
+    }
 }

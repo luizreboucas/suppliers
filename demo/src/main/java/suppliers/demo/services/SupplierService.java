@@ -25,4 +25,19 @@ public class SupplierService {
         supplierRepository.save(newSupplier);
         return new SupplierDTO(newSupplier);
     }
+
+    public SupplierDTO updateSupplier(SupplierCreationDTO supplierNewData, Long supplierId){
+        if(supplierId == null) throw new RuntimeException("id de fornecedor não fornecido");
+        if(!supplierRepository.existsById(supplierId)) throw new RuntimeException("fornecedor não encontrado");
+        Supplier supplier = supplierRepository.findById(supplierId).get();
+        supplier.update(supplierNewData);
+        return new SupplierDTO(supplier);
+    }
+
+    public Boolean deleteSupplier(Long supplierId){
+        if(!supplierRepository.existsById(supplierId)) throw new RuntimeException("fornecedor não encontrado");
+        supplierRepository.deleteById(supplierId);
+        return true;
+    }
+
 }
