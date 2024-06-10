@@ -40,4 +40,10 @@ public class SupplierService {
         return true;
     }
 
+    public SupplierDTO getSupplier(Long id){
+        if(!supplierRepository.existsById(id)) throw new RuntimeException("Supplier não encontrado");
+        Supplier supplier = supplierRepository.findById(id).get();
+        return new SupplierDTO(supplier);
+    }
+
 }

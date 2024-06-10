@@ -12,6 +12,7 @@ import suppliers.demo.domain.Supplier.SupplierDTO;
 import suppliers.demo.services.SupplierService;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/suppliers")
 public class SupplierController {
 
@@ -23,6 +24,12 @@ public class SupplierController {
 
         var suppliers = supplierService.getAllSuppliers(pagination);
         return ResponseEntity.ok(suppliers);
+    }
+
+    @GetMapping("/{supplierId}")
+    public ResponseEntity<SupplierDTO> getSupplier(@PathVariable Long supplierId){
+        var supplier = supplierService.getSupplier(supplierId);
+        return ResponseEntity.ok(supplier);
     }
 
     @PostMapping()
